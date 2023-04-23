@@ -1,0 +1,23 @@
+<template>
+    <template if:true={showSpinner}>
+        <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+    </template>
+    <lightning-card title="Post to Linkedin Website">
+        <template if:false={showAccessTokenButton}>
+            <lightning-button variant="brand" label="Authorize" title="Authorize" class="slds-m-left_x-small" onclick={httpRedirect}></lightning-button>
+        </template>
+        <template if:true={showAccessTokenButton}>
+            <lightning-button disabled variant="brand" label="Authorize" title="Authorize" class="slds-m-left_x-small" onclick={httpRedirect}></lightning-button>  &nbsp; &nbsp; <lightning-button variant="brand" label="Restart" title="Restart" onclick={restart}></lightning-button>
+            <br/><br/>
+            <lightning-textarea name="input1" class="slds-m-left_x-small inputCmp" label="Enter Body to Post to linkedin" ></lightning-textarea>
+            <br/>
+            <lightning-button variant="brand" label="Post to linkedin" title="Post to linkedin" class="slds-m-left_x-small" onclick={fetchAccessToken}></lightning-button>
+        </template>
+        <template if:true={postSuccess}>
+            <div class="slds-text-color_success">Post To Linkedin Successfull</div>
+        </template>
+        <template if:true={postError}>
+            <div class="slds-text-color_error">Error in posting to Linkedins</div>
+        </template>
+    </lightning-card>
+</template>
